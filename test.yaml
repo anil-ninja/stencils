@@ -1,0 +1,159 @@
+# Test using included Django test app
+# First install python-django
+# Then launch the app in another terminal by doing
+#   cd testapp
+#   python manage.py testserver test_data.json
+# Once launched, tests can be executed via:
+# 	python resttest.py http://localhost:8000 miniapp-test.y
+# url - http://localhost:3000,test
+# for new app 
+# npm i
+# nodemon ./bin/www
+# 
+- config:
+   - testset: "AIP app tests"
+
+- test:
+   - group: "AIP App"
+   - name: "get list of insurance_companies"
+   - url: "http://localhost:3000/users/9996507707/insurance_companies/"
+   - method: 'GET'
+
+- test:
+   - group: "AIP App"
+   - name: "get detail of insurance_company"
+   - url: "http://localhost:3000/users/9996507707/insurance_companies/59ae5ea4b695192929206f40"
+   - method: 'GET'
+
+- test:
+   - group: "AIP App"
+   - name: "get all branches"
+   - url: "http://localhost:3000/users/9996507707/insurance_companies/59ae5ea4b695192929206f40/branches/"
+   - method: 'GET'
+
+- test:
+   - group: "AIP App"
+   - name:  "get detail of specific branch"
+   - url: "http://localhost:3000/users/9996507707/insurance_companies/59ae5ea4b695192929206f40/branches/59b2747820b9e07b6465b85a"
+   - method: "GET"
+
+- test:
+   - group: "AIP App"
+   - name:  "get all inspections"
+   - url: "http://localhost:3000/users/9996507707/insurance_companies/59ae5ea4b695192929206f40/branches/59b2747820b9e07b6465b85a/inspections?userType=self&agentid=undefined"
+   - method: "GET"
+
+- test:
+   - group: "AIP App"
+   - name:  "get particular inspection data"
+   - url: "http://localhost:3000/users/9996507707/insurance_companies/59ae5ea4b695192929206f40/branches/59b2747820b9e07b6465b85a/inspections/5a0d7c6b0d690f7f3a548177"
+   - method: "GET"
+
+- test:
+   - group: "AIP App"
+   - name:  "update inspections"
+   - url: "http://localhost:3000/users/9996507707/insurance_companies/59ae5ea4b695192929206f40/branches/59b2747820b9e07b6465b85a/inspections/5a0d7c6b0d690f7f3a548177"
+   - method: "PUT"
+   - body: '{
+              "reInspection": {
+                  "reInspection.vehicleImages": [
+                    {
+                      "location": "https://lccbucket.s3.ap-south-1.amazonaws.com/ptRqkx2uVa.jpg",
+                      "type": "serfsresfe321324324243",
+                      "imgClass": null
+                    }
+                  ],
+                  "reportStatus": "435355345354"
+                }
+            }'
+   - headers: {'Content-Type': 'application/json'}
+
+# Vehicle Test Cases
+
+- test:
+   - group: "AIP app"
+   - name: "Get all vehicles"
+   - url: "http://localhost:3000/vehicles"
+   - method: "GET"
+
+- test:
+   - group: "AIP app"
+   - name:  "Get detail for particular vehicle"
+   - url:   "http://localhost:3000/vehicles/59a50f2d5893be3f33a5707f"
+   - method: "GET"
+
+- test:
+   - group: "AIP app"
+   - name:  "Get details of all categories for particular vehicle"
+   - url:   "http://localhost:3000/vehicles/59a50f2d5893be3f33a5707f/categories"
+   - method: "GET"
+
+- test:
+   - group: "AIP app"
+   - name:  "Get detail for particular vehicle's category"
+   - url:   "http://localhost:3000/vehicles/59a50f2d5893be3f33a5707f/categories/59a5267d3efa3364706c1dc2/"
+   - method: "GET"
+
+- test:
+   - group: "AIP app"
+   - name:  "Get detail of stencils for particular vehicle's category"
+   - url:   "http://localhost:3000/vehicles/59a50f2d5893be3f33a5707f/categories/59a5267d3efa3364706c1dc2/stencils"
+   - method: "GET"
+
+
+# - test:
+#    - group: "AIP App"
+#    - name:  "get all inspections"
+#    - url: "http://localhost:3000/users/9996507707/insurance_companies/59ae5ea4b695192929206f40/branches/59b2747820b9e07b6465b85a/inspections/"
+#    - method: "POST"
+#    - body: '{
+#               "reInspection": {
+#                   "reInspection.vehicleImages": [
+#                     {
+#                       "location": "https://lccbucket.s3.ap-south-1.amazonaws.com/ptRqkx2uVa.jpg",
+#                       "type": "serfsresfe321324324243",
+#                       "imgClass": null
+#                     }
+#                   ],
+#                   "reportStatus": "435355345354"
+#                 }
+#             }'
+#    - headers: {'Content-Type': 'application/json'}
+
+# - test:
+#    - group: "AIP App"
+#    - name: "Upadte Survey Claim surveyLastState"
+#    - url: "http://localhost:3000/users/9996507707/surveyor/8901414422/survey/59fb03f4552b4f00a58e7349"
+#    - method: "PUT"
+#    - body: '{
+#              "claim" :{
+#                "surveyLastState": "open",
+#                "surveyStates": "open"
+#                }
+#            }'
+#    - headers: {'Content-Type': 'application/json'}
+
+# - test:
+#    - group: "gyhdfagjsyh App"
+#    - name: "Upadte Survey Claim initialSurvey"
+#    - url: "http://localhost:3000/users/9996507707/insurance_companies/8901414422/survey/59fb03f4552b4f00a58e7349"
+#    - method: "PUT"
+#    - body: '{
+#              "clai": {    
+#                "initialSurvey": {
+#                  "textStatement": "i did initial survey",      
+#                  "vocalStatement": "vocal file id and info",    
+#                  "workshopInvoice": "230"
+#                },
+#                "initialSurveyDocImgs"      : {},
+#                "initialSurveyVehicleImgs"  : {},
+#                "initialSurveyHiddenImgs"   : {}
+#              }
+#            }'
+#   - headers: {'Content-Type': 'application/json'}
+
+
+
+
+
+
