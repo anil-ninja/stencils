@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":1,"key":{"_id":1},"name":"_id_","ns":"devdb.addsurveyors"},{"v":1,"key":{"loc":"2dsphere"},"name":"loc_2dsphere","2dsphereIndexVersion":3,"ns":"devdb.addsurveyors","background":true},{"v":1,"key":{"loc":"2d"},"name":"loc_2d","ns":"devdb.addsurveyors","background":true}]}
